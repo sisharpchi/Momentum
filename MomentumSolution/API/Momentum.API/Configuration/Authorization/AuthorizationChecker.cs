@@ -8,7 +8,7 @@ namespace Momentum.API.Configuration.Authorization
     {
         public static void CheckAllEndpoints()
         {
-            var assembly = typeof(Startup).Assembly;
+            var assembly = typeof(Program).Assembly;
             var allControllerTypes = assembly.GetTypes().Where(x => x.IsSubclassOf(typeof(ControllerBase)));
 
             List<string> notProtectedActionMethods = [];

@@ -1,0 +1,12 @@
+using Momentum.BuildingBlocks.Application.Events;
+using Momentum.Modules.Registrations.Domain.UserRegistrations.Events;
+
+namespace Momentum.Modules.Registrations.Application.UserRegistrations.ConfirmUserRegistration;
+
+public class UserRegistrationConfirmedNotification : DomainNotificationBase<UserRegistrationConfirmedDomainEvent>
+{
+    public UserRegistrationConfirmedNotification(UserRegistrationConfirmedDomainEvent domainEvent, Guid id)
+        : base(domainEvent, id)
+    {
+    }
+}

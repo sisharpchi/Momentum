@@ -7,11 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="6.5.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\BuildingBlocks\Momentum.BuildingBlocks.Application\Momentum.BuildingBlocks.Application.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\Momentum.BuildingBlocks.Infrastructure\Momentum.BuildingBlocks.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\Registrations\Momentum.Modules.Registrations.Application\Momentum.Modules.Registrations.Application.csproj" />
+    <ProjectReference Include="..\..\Modules\Registrations\Momentum.Modules.Registrations.Infrastructure\Momentum.Modules.Registrations.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Modules\UserAccess\Momentum.Modules.UserAccess.Application\Momentum.Modules.UserAccess.Application.csproj" />
     <ProjectReference Include="..\..\Modules\UserAccess\Momentum.Modules.UserAccess.Infrastructure\Momentum.Modules.UserAccess.Infrastructure.csproj" />
   </ItemGroup>

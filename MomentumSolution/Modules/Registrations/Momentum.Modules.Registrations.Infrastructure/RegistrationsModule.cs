@@ -1,0 +1,31 @@
+using Autofac;
+using Momentum.Modules.Registrations.Application.Contracts;
+using Momentum.Modules.Registrations.Infrastructure.Configuration;
+using Momentum.Modules.Registrations.Infrastructure.Configuration.Processing;
+using MediatR;
+
+namespace Momentum.Modules.Registrations.Infrastructure
+{
+    public class RegistrationsModule : IRegistrationsModule
+    {
+        public async Task<TResult> ExecuteCommandAsync<TResult>(ICommand<TResult> command)
+        {
+            return await CommandsExecutor.Execute(command);
+        }
+
+        public async Task ExecuteCommandAsync(ICommand command)
+        {
+            await CommandsExecutor.Execute(command);
+        }
+
+        public async Task<TResult> ExecuteQueryAsync<TResult>(IQuery<TResult> query)
+        {
+            using (var scope = RegistrationsCompositionRoot.BeginLifetimeScope())
+            {
+                var mediator = scope.Resolve<IMediator>();
+
+                return await mediator.Send(query);
+            }
+        }
+    }
+}

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Momentum.BuildingBlocks.Application;
 
-namespace CompanyName.MyMeetings.API.Configuration.Validation
+namespace Momentum.API.Configuration.Validation
 {
     public class InvalidCommandProblemDetails : ProblemDetails
     {
