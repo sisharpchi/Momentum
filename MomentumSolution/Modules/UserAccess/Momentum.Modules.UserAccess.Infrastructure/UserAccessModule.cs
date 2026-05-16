@@ -1,6 +1,8 @@
-﻿using MediatR;
+using Autofac;
+using MediatR;
 using Momentum.Modules.UserAccess.Application.Contracts;
-using System.Windows.Input;
+using Momentum.Modules.UserAccess.Infrastructure.Configuration;
+using Momentum.Modules.UserAccess.Infrastructure.Configuration.Processing;
 
 namespace Momentum.Modules.UserAccess.Infrastructure;
 
