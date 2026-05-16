@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Momentum.Modules.UserAccess
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Momentum.Modules.UserAccess.IntegrationEvents", "Modules\UserAccess\Momentum.Modules.UserAccess.IntegrationEvents\Momentum.Modules.UserAccess.IntegrationEvents.csproj", "{7296CF90-3F05-4728-AF72-362CB01CC061}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Registrations", "Registrations", "{D7D3DF9B-E2A8-4A8B-BB05-6D05A5380E8B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -193,6 +195,7 @@ Global
 		{A198B097-B92B-40B9-AAF9-5388365D394D} = {252F4B2E-172F-4430-ADA8-DF827213DEC9}
 		{6BC93671-4278-4E9E-A512-BE1A9325E977} = {252F4B2E-172F-4430-ADA8-DF827213DEC9}
 		{7296CF90-3F05-4728-AF72-362CB01CC061} = {252F4B2E-172F-4430-ADA8-DF827213DEC9}
+		{D7D3DF9B-E2A8-4A8B-BB05-6D05A5380E8B} = {4AA903EE-F8B1-458A-938D-421D947BD211}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C5318EA6-A947-4038-9873-F196884347FD}

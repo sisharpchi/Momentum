@@ -10,4 +10,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\BuildingBlocks\Momentum.BuildingBlocks.Application\Momentum.BuildingBlocks.Application.csproj" />
+    <ProjectReference Include="..\..\Modules\UserAccess\Momentum.Modules.UserAccess.Application\Momentum.Modules.UserAccess.Application.csproj" />
+    <ProjectReference Include="..\..\Modules\UserAccess\Momentum.Modules.UserAccess.Infrastructure\Momentum.Modules.UserAccess.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
