@@ -19,16 +19,11 @@ internal class DataAccessModule : Module
 
     protected override void Load(ContainerBuilder builder)
     {
-        builder.RegisterType<>()
-            .As<>()
-            .WithParameter("connectionString", _databaseConnectionString)
-            .InstancePerLifetimeScope();
-
         builder
             .Register(c =>
             {
                 var dbContextOptionsBuilder = new DbContextOptionsBuilder<UserAccessContext>();
-                dbContextOptionsBuilder.UseSqlServer(_databaseConnectionString);
+                dbContextOptionsBuilder.UseNpgsql(_databaseConnectionString);
 
                 dbContextOptionsBuilder
                     .ReplaceService<IValueConverterSelector, StronglyTypedIdValueConverterSelector>();
@@ -44,7 +39,6 @@ internal class DataAccessModule : Module
         builder.RegisterAssemblyTypes(infrastructureAssembly)
             .Where(type => type.Name.EndsWith("Repository"))
             .AsImplementedInterfaces()
-            .InstancePerLifetimeScope()
-            .FindConstructorsWith(new AllConstructorFinder());
+            .InstancePerLifetimeScope();
     }
 }
