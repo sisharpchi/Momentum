@@ -1,4 +1,4 @@
-﻿using Autofac;
+using Autofac;
 using Momentum.BuildingBlocks.Infrastructure.EventBus;
 
 namespace Momentum.Modules.UserAccess.Infrastructure.Configuration.EventsBus

@@ -8,6 +8,10 @@
 
         public string Data { get; set; }
 
+        public DateTime EnqueueDate { get; set; }
+
         public DateTime? ProcessedDate { get; set; }
+
+        public string? Error { get; set; }
     }
 }

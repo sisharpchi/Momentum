@@ -12,5 +12,9 @@ internal class InternalCommandEntityTypeConfiguration : IEntityTypeConfiguration
 
         builder.HasKey(command => command.Id);
         builder.Property(command => command.Id).ValueGeneratedNever();
+        builder.Property(command => command.Type).IsRequired();
+        builder.Property(command => command.Data).IsRequired();
+        builder.Property(command => command.EnqueueDate).IsRequired();
+        builder.Property(command => command.Error);
     }
 }

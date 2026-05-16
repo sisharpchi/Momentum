@@ -20,6 +20,11 @@ public class InboxMessage
         Data = data;
     }
 
+    public void MarkAsProcessed(DateTime processedDate)
+    {
+        ProcessedDate = processedDate;
+    }
+
     private InboxMessage()
     {
         Type = default!;

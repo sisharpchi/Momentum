@@ -1,4 +1,4 @@
-﻿using Autofac;
+using Autofac;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Logging;
@@ -24,6 +24,7 @@ internal class DataAccessModule : Module
             {
                 var dbContextOptionsBuilder = new DbContextOptionsBuilder<UserAccessContext>();
                 dbContextOptionsBuilder.UseNpgsql(_databaseConnectionString);
+                dbContextOptionsBuilder.UseOpenIddict();
 
                 dbContextOptionsBuilder
                     .ReplaceService<IValueConverterSelector, StronglyTypedIdValueConverterSelector>();

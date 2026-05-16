@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Momentum.BuildingBlocks.Application.Outbox;
 using Momentum.BuildingBlocks.Infrastructure.InternalCommands;

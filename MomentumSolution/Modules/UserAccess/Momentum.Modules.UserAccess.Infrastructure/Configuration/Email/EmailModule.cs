@@ -1,4 +1,4 @@
-﻿using Autofac;
+using Autofac;
 using Momentum.BuildingBlocks.Application.Emails;
 using Momentum.BuildingBlocks.Infrastructure.Emails;
 

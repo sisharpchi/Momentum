@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Momentum.BuildingBlocks.Infrastructure;
 using Momentum.BuildingBlocks.Infrastructure.Persistence;
 
