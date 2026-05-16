@@ -1,6 +1,4 @@
-﻿using Momentum.BuildingBlocks.Application.Data;
 using Momentum.BuildingBlocks.Application.Emails;
-using Dapper;
 using Serilog;
 
 namespace Momentum.BuildingBlocks.Infrastructure.Emails
@@ -11,34 +9,29 @@ namespace Momentum.BuildingBlocks.Infrastructure.Emails
 
         private readonly EmailsConfiguration _configuration;
 
-        private readonly ISqlConnectionFactory _sqlConnectionFactory;
+        private readonly IEmailsDbContext _dbContext;
 
         public EmailSender(
             ILogger logger,
             EmailsConfiguration configuration,
-            ISqlConnectionFactory sqlConnectionFactory)
+            IEmailsDbContext dbContext)
         {
             _logger = logger;
             _configuration = configuration;
-            _sqlConnectionFactory = sqlConnectionFactory;
+            _dbContext = dbContext;
         }
 
         public async Task SendEmail(EmailMessage message)
         {
-            var sqlConnection = _sqlConnectionFactory.GetOpenConnection();
+            var email = new Email(
+                _configuration.FromEmail,
+                message.To,
+                message.Subject,
+                message.Content);
 
-            await sqlConnection.ExecuteScalarAsync(
-                "INSERT INTO [app].[Emails] ([Id], [From], [To], [Subject], [Content], [Date]) " +
-                "VALUES (@Id, @From, @To, @Subject, @Content, @Date) ",
-                new
-                {
-                    Id = Guid.NewGuid(),
-                    From = _configuration.FromEmail,
-                    message.To,
-                    message.Subject,
-                    message.Content,
-                    Date = DateTime.UtcNow
-                });
+            _dbContext.Emails.Add(email);
+
+            await _dbContext.SaveChangesAsync();
 
             _logger.Information(
                 "Email sent. From: {From}, To: {To}, Subject: {Subject}, Content: {Content}.",
