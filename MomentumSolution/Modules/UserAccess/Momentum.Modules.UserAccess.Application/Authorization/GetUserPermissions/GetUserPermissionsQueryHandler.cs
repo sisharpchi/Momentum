@@ -1,30 +1,25 @@
-﻿using Momentum.BuildingBlocks.Application.Data;
+using Microsoft.EntityFrameworkCore;
+using Momentum.BuildingBlocks.Infrastructure.Persistence;
 using Momentum.Modules.UserAccess.Application.Configuration.Queries;
-using Dapper;
 
 namespace Momentum.Modules.UserAccess.Application.Authorization.GetUserPermissions
 {
     internal class GetUserPermissionsQueryHandler : IQueryHandler<GetUserPermissionsQuery, List<UserPermissionDto>>
     {
-        private readonly ISqlConnectionFactory _sqlConnectionFactory;
+        private readonly IMainRepository _mainRepository;
 
-        public GetUserPermissionsQueryHandler(ISqlConnectionFactory sqlConnectionFactory)
+        public GetUserPermissionsQueryHandler(IMainRepository mainRepository)
         {
-            _sqlConnectionFactory = sqlConnectionFactory;
+            _mainRepository = mainRepository;
         }
 
         public async Task<List<UserPermissionDto>> Handle(GetUserPermissionsQuery request, CancellationToken cancellationToken)
         {
-            var connection = _sqlConnectionFactory.GetOpenConnection();
-
-            const string sql = $"""
-                                SELECT [UserPermission].[PermissionCode] AS [{nameof(UserPermissionDto.Code)}]
-                                FROM [users].[v_UserPermissions] AS [UserPermission] 
-                                WHERE [UserPermission].UserId = @UserId
-                                """;
-            var permissions = await connection.QueryAsync<UserPermissionDto>(sql, new { request.UserId });
-
-            return permissions.AsList();
+            return await _mainRepository
+                .Set<UserPermissionDto>()
+                .AsNoTracking()
+                .Where(permission => permission.UserId == request.UserId)
+                .ToListAsync(cancellationToken);
         }
     }
 }

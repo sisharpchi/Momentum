@@ -1,17 +1,18 @@
 using Momentum.Modules.UserAccess.Application.Authentication;
 using Momentum.Modules.UserAccess.Application.Authentication.Authenticate;
 using Momentum.Modules.UserAccess.Application.Configuration.Commands;
+using Momentum.BuildingBlocks.Infrastructure.Persistence;
 using Momentum.Modules.UserAccess.Domain.Users;
 
 namespace Momentum.Modules.UserAccess.Application.Users.AddAdminUser
 {
     internal class AddAdminUserCommandHandler : ICommandHandler<AddAdminUserCommand>
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IMainRepository _mainRepository;
 
-        public AddAdminUserCommandHandler(IUserRepository userRepository)
+        public AddAdminUserCommandHandler(IMainRepository mainRepository)
         {
-            _userRepository = userRepository;
+            _mainRepository = mainRepository;
         }
 
         public async Task Handle(AddAdminUserCommand command, CancellationToken cancellationToken)
@@ -26,7 +27,7 @@ namespace Momentum.Modules.UserAccess.Application.Users.AddAdminUser
                 command.LastName,
                 command.Name);
 
-            await _userRepository.AddAsync(user);
+            await _mainRepository.Set<User>().AddAsync(user, cancellationToken);
         }
     }
 }

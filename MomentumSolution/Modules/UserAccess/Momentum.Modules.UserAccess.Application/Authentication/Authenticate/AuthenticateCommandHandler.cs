@@ -1,42 +1,26 @@
-﻿using System.Security.Claims;
-using Momentum.BuildingBlocks.Application.Data;
+using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
+using Momentum.BuildingBlocks.Infrastructure.Persistence;
 using Momentum.Modules.UserAccess.Application.Configuration.Commands;
 using Momentum.Modules.UserAccess.Application.Contracts;
-using Dapper;
 
 namespace Momentum.Modules.UserAccess.Application.Authentication.Authenticate
 {
     internal class AuthenticateCommandHandler : ICommandHandler<AuthenticateCommand, AuthenticationResult>
     {
-        private readonly ISqlConnectionFactory _sqlConnectionFactory;
+        private readonly IMainRepository _mainRepository;
 
-        internal AuthenticateCommandHandler(ISqlConnectionFactory sqlConnectionFactory)
+        internal AuthenticateCommandHandler(IMainRepository mainRepository)
         {
-            _sqlConnectionFactory = sqlConnectionFactory;
+            _mainRepository = mainRepository;
         }
 
         public async Task<AuthenticationResult> Handle(AuthenticateCommand request, CancellationToken cancellationToken)
         {
-            var connection = _sqlConnectionFactory.GetOpenConnection();
-
-            const string sql = $"""
-                                SELECT 
-                                   [User].[Id] as [{nameof(UserDto.Id)}],
-                                   [User].[Login] as [{nameof(UserDto.Login)}],
-                                   [User].[Name] as [{nameof(UserDto.Name)}],
-                                   [User].[Email] as [{nameof(UserDto.Email)}],
-                                   [User].[IsActive] as [{nameof(UserDto.IsActive)}],
-                                   [User].[Password]  as [{nameof(UserDto.Password)}]
-                               FROM [users].[v_Users] AS [User] 
-                               WHERE [User].[Login] = @Login
-                               """;
-
-            var user = await connection.QuerySingleOrDefaultAsync<UserDto>(
-                sql,
-                new
-                {
-                    request.Login,
-                });
+            var user = await _mainRepository
+                .Set<UserDto>()
+                .AsNoTracking()
+                .SingleOrDefaultAsync(user => user.Login == request.Login, cancellationToken);
 
             if (user == null)
             {

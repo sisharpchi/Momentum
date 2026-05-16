@@ -1,4 +1,4 @@
-﻿using System.Security.Claims;
+using System.Security.Claims;
 
 namespace Momentum.Modules.UserAccess.Application.Authentication.Authenticate
 {
@@ -6,16 +6,16 @@ namespace Momentum.Modules.UserAccess.Application.Authentication.Authenticate
     {
         public Guid Id { get; set; }
 
-        public string Login { get; set; }
+        public string Login { get; set; } = null!;
 
         public bool IsActive { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
-        public string Email { get; set; }
+        public string Email { get; set; } = null!;
 
-        public List<Claim> Claims { get; set; }
+        public List<Claim> Claims { get; set; } = [];
 
-        public string Password { get; set; }
+        public string Password { get; set; } = null!;
     }
 }

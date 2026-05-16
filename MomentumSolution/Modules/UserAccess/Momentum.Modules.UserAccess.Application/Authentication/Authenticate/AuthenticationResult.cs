@@ -1,4 +1,4 @@
-﻿namespace Momentum.Modules.UserAccess.Application.Authentication.Authenticate
+namespace Momentum.Modules.UserAccess.Application.Authentication.Authenticate
 {
     public class AuthenticationResult
     {
@@ -16,8 +16,8 @@
 
         public bool IsAuthenticated { get; }
 
-        public string AuthenticationError { get; }
+        public string? AuthenticationError { get; }
 
-        public UserDto User { get; }
+        public UserDto? User { get; }
     }
 }

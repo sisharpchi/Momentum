@@ -1,22 +1,22 @@
-﻿using Momentum.BuildingBlocks.Application;
-using Momentum.BuildingBlocks.Application.Data;
+using Momentum.BuildingBlocks.Application;
+using Microsoft.EntityFrameworkCore;
+using Momentum.BuildingBlocks.Infrastructure.Persistence;
 using Momentum.Modules.UserAccess.Application.Authorization.GetUserPermissions;
 using Momentum.Modules.UserAccess.Application.Configuration.Queries;
-using Dapper;
 
 namespace Momentum.Modules.UserAccess.Application.Authorization.GetAuthenticatedUserPermissions
 {
     internal class GetAuthenticatedUserPermissionsQueryHandler : IQueryHandler<GetAuthenticatedUserPermissionsQuery, List<UserPermissionDto>>
     {
-        private readonly ISqlConnectionFactory _sqlConnectionFactory;
+        private readonly IMainRepository _mainRepository;
 
         private readonly IExecutionContextAccessor _executionContextAccessor;
 
         public GetAuthenticatedUserPermissionsQueryHandler(
-            ISqlConnectionFactory sqlConnectionFactory,
+            IMainRepository mainRepository,
             IExecutionContextAccessor executionContextAccessor)
         {
-            _sqlConnectionFactory = sqlConnectionFactory;
+            _mainRepository = mainRepository;
             _executionContextAccessor = executionContextAccessor;
         }
 
@@ -27,19 +27,11 @@ namespace Momentum.Modules.UserAccess.Application.Authorization.GetAuthenticated
                 return [];
             }
 
-            var connection = _sqlConnectionFactory.GetOpenConnection();
-
-            const string sql = $""" 
-                               SELECT [UserPermission].[PermissionCode] AS [{nameof(UserPermissionDto.Code)}]
-                               FROM [users].[v_UserPermissions] AS [UserPermission] 
-                               WHERE [UserPermission].UserId = @UserId
-                               """;
-
-            var permissions = await connection.QueryAsync<UserPermissionDto>(
-                sql,
-                new { _executionContextAccessor.UserId });
-
-            return permissions.AsList();
+            return await _mainRepository
+                .Set<UserPermissionDto>()
+                .AsNoTracking()
+                .Where(permission => permission.UserId == _executionContextAccessor.UserId)
+                .ToListAsync(cancellationToken);
         }
     }
 }

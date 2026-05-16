@@ -1,4 +1,4 @@
-﻿namespace Momentum.Modules.UserAccess.Application.Users.GetUser
+namespace Momentum.Modules.UserAccess.Application.Users.GetUser
 {
     public class UserDto
     {
@@ -6,10 +6,10 @@
 
         public bool IsActive { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
-        public string Login { get; set; }
+        public string Login { get; set; } = null!;
 
-        public string Email { get; set; }
+        public string Email { get; set; } = null!;
     }
 }

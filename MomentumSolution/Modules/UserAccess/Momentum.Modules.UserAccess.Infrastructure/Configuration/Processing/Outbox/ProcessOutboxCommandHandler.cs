@@ -44,6 +44,11 @@ namespace Momentum.Modules.UserAccess.Infrastructure.Configuration.Processing.Ou
                     var type = _domainNotificationsMapper.GetType(message.Type);
                     var @event = JsonConvert.DeserializeObject(message.Data, type) as IDomainEventNotification;
 
+                    if (@event == null)
+                    {
+                        continue;
+                    }
+
                     using (LogContext.Push(new OutboxMessageContextEnricher(@event)))
                     {
                         await this._mediator.Publish(@event, cancellationToken);

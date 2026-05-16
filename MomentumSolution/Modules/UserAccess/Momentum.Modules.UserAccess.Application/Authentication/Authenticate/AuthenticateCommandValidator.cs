@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 
 namespace Momentum.Modules.UserAccess.Application.Authentication.Authenticate
 {

@@ -1,4 +1,4 @@
-﻿using Momentum.Modules.UserAccess.Application.Contracts;
+using Momentum.Modules.UserAccess.Application.Contracts;
 
 namespace Momentum.Modules.UserAccess.Application.Users.AddAdminUser
 {

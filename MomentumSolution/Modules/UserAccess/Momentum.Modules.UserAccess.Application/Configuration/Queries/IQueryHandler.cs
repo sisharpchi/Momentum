@@ -1,4 +1,4 @@
-﻿using Momentum.Modules.UserAccess.Application.Contracts;
+using Momentum.Modules.UserAccess.Application.Contracts;
 using MediatR;
 
 namespace Momentum.Modules.UserAccess.Application.Configuration.Queries

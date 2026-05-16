@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 
 namespace Momentum.Modules.UserAccess.Application.Contracts
 {

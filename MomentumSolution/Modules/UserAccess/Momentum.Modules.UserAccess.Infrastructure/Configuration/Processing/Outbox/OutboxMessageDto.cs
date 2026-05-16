@@ -4,8 +4,8 @@ namespace Momentum.Modules.UserAccess.Infrastructure.Configuration.Processing.Ou
     {
         public Guid Id { get; set; }
 
-        public string Type { get; set; }
+        public string Type { get; set; } = null!;
 
-        public string Data { get; set; }
+        public string Data { get; set; } = null!;
     }
 }

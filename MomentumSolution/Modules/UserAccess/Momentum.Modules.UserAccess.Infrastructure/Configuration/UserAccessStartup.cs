@@ -19,7 +19,7 @@ namespace Momentum.Modules.UserAccess.Infrastructure.Configuration
 {
     public class UserAccessStartup
     {
-        private static IContainer _container;
+        private static IContainer _container = null!;
 
         public static void Initialize(
             string connectionString,

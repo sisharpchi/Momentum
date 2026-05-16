@@ -1,4 +1,4 @@
-﻿namespace Momentum.Modules.UserAccess.Application.Contracts
+namespace Momentum.Modules.UserAccess.Application.Contracts
 {
     public abstract class CommandBase : ICommand
     {
