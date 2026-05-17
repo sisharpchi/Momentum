@@ -11,9 +11,9 @@ namespace Momentum.API.Configuration.Extensions
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "MyMeetings API",
+                    Title = "Momentum API",
                     Version = "v1",
-                    Description = "MyMeetings API for modular monolith .NET application."
+                    Description = "Momentum API for modular monolith .NET application."
                 });
                 options.CustomSchemaIds(t => t.ToString());
 
@@ -60,7 +60,7 @@ namespace Momentum.API.Configuration.Extensions
         {
             app.UseSwagger();
 
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyMeetings API"); });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Momentum API"); });
 
             return app;
         }

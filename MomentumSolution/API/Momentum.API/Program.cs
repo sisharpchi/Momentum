@@ -22,7 +22,7 @@ namespace Momentum.API
 {
     public class Program
     {
-        private const string ConnectionStringName = "MeetingsConnectionString";
+        private const string ConnectionStringName = "MomentumConnectionString";
 
         public static void Main(string[] args)
         {
