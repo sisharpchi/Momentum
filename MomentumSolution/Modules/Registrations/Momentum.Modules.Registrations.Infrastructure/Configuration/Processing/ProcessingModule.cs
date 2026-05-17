@@ -25,6 +25,7 @@ namespace Momentum.Modules.Registrations.Infrastructure.Configuration.Processing
                 .InstancePerLifetimeScope();
 
             builder.RegisterType<UnitOfWork>()
+                .AsSelf()
                 .As<IUnitOfWork>()
                 .InstancePerLifetimeScope();
 

@@ -1,12 +1,14 @@
 using System.Reflection;
 using Autofac;
 using Autofac.Core;
+using Autofac.Extensions.DependencyInjection;
 using Autofac.Features.Variance;
 using Momentum.BuildingBlocks.Infrastructure;
 using Momentum.Modules.Registrations.Application.Configuration.Commands;
 using FluentValidation;
 using MediatR;
 using MediatR.Pipeline;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Momentum.Modules.Registrations.Infrastructure.Configuration.Mediation
 {
@@ -14,6 +16,12 @@ namespace Momentum.Modules.Registrations.Infrastructure.Configuration.Mediation
     {
         protected override void Load(ContainerBuilder builder)
         {
+            var mediatRServices = new ServiceCollection();
+            mediatRServices.AddLogging();
+            mediatRServices.AddMediatR(configuration =>
+                configuration.RegisterServicesFromAssembly(typeof(IMediator).Assembly));
+            builder.Populate(mediatRServices);
+
             builder.RegisterType<ServiceProviderWrapper>()
             .As<IServiceProvider>()
             .InstancePerDependency()

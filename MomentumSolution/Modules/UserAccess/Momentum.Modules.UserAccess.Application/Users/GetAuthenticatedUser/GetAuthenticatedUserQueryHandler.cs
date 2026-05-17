@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Momentum.BuildingBlocks.Infrastructure.Persistence;
 using Momentum.Modules.UserAccess.Application.Configuration.Queries;
 using Momentum.Modules.UserAccess.Application.Users.GetUser;
+using AuthenticateUserDto = Momentum.Modules.UserAccess.Application.Authentication.Authenticate.UserDto;
 
 namespace Momentum.Modules.UserAccess.Application.Users.GetAuthenticatedUser
 {
@@ -23,8 +24,16 @@ namespace Momentum.Modules.UserAccess.Application.Users.GetAuthenticatedUser
         public async Task<UserDto> Handle(GetAuthenticatedUserQuery request, CancellationToken cancellationToken)
         {
             return await _mainRepository
-                .Set<UserDto>()
+                .Set<AuthenticateUserDto>()
                 .AsNoTracking()
+                .Select(user => new UserDto
+                {
+                    Id = user.Id,
+                    IsActive = user.IsActive,
+                    Name = user.Name,
+                    Login = user.Login,
+                    Email = user.Email,
+                })
                 .SingleAsync(user => user.Id == _executionContextAccessor.UserId, cancellationToken);
         }
     }

@@ -12,7 +12,6 @@ using Momentum.Modules.UserAccess.Infrastructure.Domain.Users;
 using Momentum.Modules.UserAccess.Infrastructure.InternalCommands;
 using Momentum.Modules.UserAccess.Infrastructure.Outbox;
 using AuthenticateUserDto = Momentum.Modules.UserAccess.Application.Authentication.Authenticate.UserDto;
-using GetUserDto = Momentum.Modules.UserAccess.Application.Users.GetUser.UserDto;
 
 namespace Momentum.Modules.UserAccess.Infrastructure;
 
@@ -37,12 +36,6 @@ public class UserAccessContext(DbContextOptions options, ILoggerFactory loggerFa
         modelBuilder.ApplyConfiguration(new InboxMessageEntityTypeConfiguration());
         modelBuilder.ApplyConfiguration(new InternalCommandEntityTypeConfiguration());
         modelBuilder.ApplyConfiguration(new EmailEntityTypeConfiguration());
-
-        modelBuilder.Entity<GetUserDto>(builder =>
-        {
-            builder.HasNoKey();
-            builder.ToView("v_Users", "users");
-        });
 
         modelBuilder.Entity<AuthenticateUserDto>(builder =>
         {
