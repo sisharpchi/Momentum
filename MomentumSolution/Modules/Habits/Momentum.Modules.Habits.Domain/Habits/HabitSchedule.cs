@@ -17,6 +17,13 @@ public class HabitSchedule : ValueObject
 
     private readonly List<DayOfWeek> _daysOfWeek;
 
+    private HabitSchedule()
+    {
+        Frequency = null!;
+        Timezone = string.Empty;
+        _daysOfWeek = [];
+    }
+
     private HabitSchedule(
         HabitScheduleFrequency frequency,
         DateOnly startDate,

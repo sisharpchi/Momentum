@@ -6,4 +6,17 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.11.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
+    <PackageReference Include="Quartz" Version="3.13.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Momentum.BuildingBlocks.Infrastructure\Momentum.BuildingBlocks.Infrastructure.csproj" />
+    <ProjectReference Include="..\Momentum.Modules.Habits.Application\Momentum.Modules.Habits.Application.csproj" />
+    <ProjectReference Include="..\Momentum.Modules.Habits.Domain\Momentum.Modules.Habits.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

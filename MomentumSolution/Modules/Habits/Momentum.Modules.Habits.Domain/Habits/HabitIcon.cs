@@ -8,6 +8,12 @@ public class HabitIcon : ValueObject
 
     public string Value { get; }
 
+    private HabitIcon()
+    {
+        Type = string.Empty;
+        Value = string.Empty;
+    }
+
     private HabitIcon(string type, string value)
     {
         if (string.IsNullOrWhiteSpace(value))

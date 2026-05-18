@@ -9,6 +9,11 @@ public class HabitTarget : ValueObject
 
     public string Unit { get; }
 
+    private HabitTarget()
+    {
+        Unit = string.Empty;
+    }
+
     private HabitTarget(decimal value, string unit)
     {
         CheckRule(new HabitTargetMustBePositiveRule(value));

@@ -10,6 +10,11 @@ public class HabitScheduleVersion : ValueObject
 
     public DateOnly? EffectiveTo { get; private set; }
 
+    private HabitScheduleVersion()
+    {
+        Schedule = null!;
+    }
+
     private HabitScheduleVersion(HabitSchedule schedule, DateOnly effectiveFrom, DateOnly? effectiveTo)
     {
         Schedule = schedule;

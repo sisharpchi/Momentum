@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Momentum.BuildingBlocks.Infrastructure\Momentum.BuildingBlocks.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.11.0" />
+    <PackageReference Include="MediatR" Version="14.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Momentum.BuildingBlocks.Application\Momentum.BuildingBlocks.Application.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Momentum.BuildingBlocks.Infrastructure\Momentum.BuildingBlocks.Infrastructure.csproj" />
+    <ProjectReference Include="..\Momentum.Modules.Habits.Domain\Momentum.Modules.Habits.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

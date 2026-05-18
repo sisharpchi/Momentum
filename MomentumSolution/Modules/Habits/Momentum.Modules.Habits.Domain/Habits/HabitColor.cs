@@ -7,6 +7,11 @@ public partial class HabitColor : ValueObject
 {
     public string Value { get; }
 
+    private HabitColor()
+    {
+        Value = string.Empty;
+    }
+
     private HabitColor(string value)
     {
         if (!HexColorRegex().IsMatch(value))
