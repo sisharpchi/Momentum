@@ -11,6 +11,9 @@ namespace Momentum.Modules.UserAccess.Infrastructure.Domain.Users
             builder.ToTable("Users", "users");
 
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id)
+                .HasConversion(id => id.Value, value => new UserId(value))
+                .ValueGeneratedNever();
 
             builder.Property<string>("_login").HasColumnName("Login");
             builder.Property<string>("_email").HasColumnName("Email");
@@ -24,7 +27,8 @@ namespace Momentum.Modules.UserAccess.Infrastructure.Domain.Users
             {
                 b.WithOwner().HasForeignKey("UserId");
                 b.ToTable("UserRoles", "users");
-                b.Property<UserId>("UserId");
+                b.Property<UserId>("UserId")
+                    .HasConversion(id => id.Value, value => new UserId(value));
                 b.Property<string>("Value").HasColumnName("RoleCode");
                 b.HasKey("UserId", "Value");
             });

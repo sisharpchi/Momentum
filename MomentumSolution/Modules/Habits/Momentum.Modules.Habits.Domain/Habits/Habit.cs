@@ -139,7 +139,7 @@ public class Habit : Entity, IAggregateRoot
         CheckRule(new ArchivedHabitCannotBeChangedRule(_status));
 
         var previousVersion = _scheduleVersions.Last();
-        previousVersion.CloseOn(schedule.StartDate.AddDays(-1));
+        _scheduleVersions[^1] = previousVersion.CloseOn(schedule.StartDate.AddDays(-1));
         _scheduleVersions.Add(HabitScheduleVersion.Start(schedule));
 
         AddDomainEvent(new HabitScheduleChangedDomainEvent(Id, UserId, schedule.StartDate));

@@ -8,7 +8,7 @@ public class HabitScheduleVersion : ValueObject
 
     public DateOnly EffectiveFrom { get; }
 
-    public DateOnly? EffectiveTo { get; private set; }
+    public DateOnly? EffectiveTo { get; }
 
     private HabitScheduleVersion()
     {
@@ -25,8 +25,8 @@ public class HabitScheduleVersion : ValueObject
     public static HabitScheduleVersion Start(HabitSchedule schedule) =>
         new(schedule, schedule.StartDate, null);
 
-    internal void CloseOn(DateOnly effectiveTo)
+    internal HabitScheduleVersion CloseOn(DateOnly effectiveTo)
     {
-        EffectiveTo = effectiveTo;
+        return new HabitScheduleVersion(Schedule, EffectiveFrom, effectiveTo);
     }
 }

@@ -4,7 +4,7 @@ using Momentum.Modules.Habits.Domain.HabitGroups;
 
 namespace Momentum.Modules.Habits.Application.HabitGroups.GetHabitGroups;
 
-public class GetHabitGroupsQueryHandler : IQueryHandler<GetHabitGroupsQuery, IReadOnlyList<HabitGroupDto>>
+internal class GetHabitGroupsQueryHandler : IQueryHandler<GetHabitGroupsQuery, IReadOnlyList<HabitGroupDto>>
 {
     private readonly DbContext _context;
 

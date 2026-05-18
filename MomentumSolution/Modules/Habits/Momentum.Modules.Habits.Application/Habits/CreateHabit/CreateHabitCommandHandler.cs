@@ -5,7 +5,7 @@ using Momentum.Modules.Habits.Domain.Habits;
 
 namespace Momentum.Modules.Habits.Application.Habits.CreateHabit;
 
-public class CreateHabitCommandHandler : ICommandHandler<CreateHabitCommand, Guid>
+internal class CreateHabitCommandHandler : ICommandHandler<CreateHabitCommand, Guid>
 {
     private readonly IMainRepository _repository;
 

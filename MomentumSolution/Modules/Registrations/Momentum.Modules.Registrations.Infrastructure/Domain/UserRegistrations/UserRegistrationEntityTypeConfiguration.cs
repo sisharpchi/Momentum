@@ -11,6 +11,9 @@ namespace Momentum.Modules.Registrations.Infrastructure.Domain.UserRegistrations
             builder.ToTable("UserRegistrations", "registrations");
 
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id)
+                .HasConversion(id => id.Value, value => new UserRegistrationId(value))
+                .ValueGeneratedNever();
 
             builder.Property<string>("_login").HasColumnName("Login");
             builder.Property<string>("_email").HasColumnName("Email");
